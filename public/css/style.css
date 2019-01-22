@@ -1,0 +1,30 @@
+.post-form {
+    margin: 20px;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.card {
+    border-radius: 0;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.alert {
+    border-radius: 0;
+    color: #fff;
+}
+
+.alert-danger {
+    background: red;
+    border-color: red;
+}
+
+.alert-success {
+    background: green;
+    border-color: green;
+}

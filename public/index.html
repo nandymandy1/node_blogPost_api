@@ -1,1 +1,100 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple UI to our Backend</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Simple UI</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        </div>
+    </nav>
+    <!--Navbar-->
+
+    <!--Container-->
+    <div class="container mt-3" id="app">
+
+
+        <div :class="alertType" v-if="status">
+            {{ message }}
+        </div>
+
+
+        <form @submit.prevent="addPost">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" placeholder="Title" name="title" id="title" v-model="post.title">
+            </div>
+            <div class="form-group">
+                <label for="body">Body</label>
+                <textarea name="body" id="body" placeholder="Body" class="form-control" v-model="post.body" cols="20"
+                    rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="author">Author Name</label>
+                <input type="text" class="form-control" placeholder="Author Name" name="author" id="author" v-model="post.author">
+            </div>
+            <input type="submit" v-if="!editMode" class="btn btn-md btn-primary ml-auto" value="Add Post">
+            <input type="submit" v-else class="btn btn-md btn-primary ml-auto" value="Update Post">
+        </form>
+
+        <h3 class="text-center">Posts</h3>
+
+        <!--Posts-->
+        <div class="row mt-2">
+
+            <template v-if="posts.length">
+                <div class="col-md-6 col-sm-12 col-lg-6 mt-2 mb-2" v-for="post, key in posts">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{post.title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">By: {{post.author}}</h6>
+                            <p class="card-text">
+                                {{post.body}}
+                            </p>
+                            <button class="btn btn-md btn-info btn-block" @click="editPost(post, key)">Update</button>
+                            <button class="btn btn-md btn-danger btn-block" @click="deletePost(post._id, key)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template v-else>
+                <div class="col-12">
+                    <h3>Currently there are no Posts in the App.</h3>
+                </div>
+            </template>
+
+        </div>
+        <!--Posts-->
+
+    </div>
+    <!--Container-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>

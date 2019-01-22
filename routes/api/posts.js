@@ -83,13 +83,13 @@ router.get('/:id', (req, res, next) => {
     PUT Method to Update single Post by Id
 */
 
-router.put('/:id', (req, res, next) => {
+router.put('/', (req, res, next) => {
 
     let title = req.body.title;
     let body = req.body.body;
     let author = req.body.author;
 
-    let id = req.params.id;
+    let id = req.body._id;
     Post.findOne({
         _id: id
     }).then((post) => {
